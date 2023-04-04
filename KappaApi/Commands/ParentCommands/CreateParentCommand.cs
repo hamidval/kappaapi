@@ -1,9 +1,10 @@
 ﻿using KappaApi.Models;
+using KappaApi.Models.Api;
 
 namespace KappaApi.Commands.ParentCommands
 {
     public class CreateParentCommand
     {
-        public Parent Parent { get; set; }
+        public ParentApiModel Parent { get; set; }
     }
 }

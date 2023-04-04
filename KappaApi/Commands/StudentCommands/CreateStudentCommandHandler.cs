@@ -1,4 +1,6 @@
-﻿using NHibernate;
+﻿using KappaApi.Models;
+using KappaApi.Queries.Contracts;
+using NHibernate;
 
 namespace KappaApi.Commands.StudentCommands
 {
@@ -6,22 +8,37 @@ namespace KappaApi.Commands.StudentCommands
     {
 
         private readonly ISessionFactory _sessionFactory;
-        public CreateStudentCommandHandler(ISessionFactory sessionFactory) 
+        private readonly IParentQuery _parentQuery;
+        public CreateStudentCommandHandler(ISessionFactory sessionFactory, IParentQuery parentQuery) 
         {
             _sessionFactory = sessionFactory;
+            _parentQuery = parentQuery;
         }
 
         public Task HandleAsync(CreateStudentCommand command)
         {
-            using (NHibernate.ISession session = _sessionFactory.OpenSession()) 
+            var parentId = command.Student.ParentId;
+            var parent = _parentQuery.GetParentById(parentId);
+            if (parent != null) 
             {
-                using (ITransaction transaction = session.BeginTransaction()) 
+                using (NHibernate.ISession session = _sessionFactory.OpenSession())
                 {
-                    session.Save(command.Student);
-                    transaction.Commit();
+                    using (ITransaction transaction = session.BeginTransaction())
+                    {
+                        var student = new Student(parent);
+                        student.FirstName = command.Student.FirstName;
+                        student.LastName = command.Student.LastName;
+                        student.Status = Enums.StudentStatus.Active;
+                        student.Parent = parent;
+
+                        session.Save(student);
+                        transaction.Commit();
+                    }
+
                 }
 
             }
+          
             return Task.CompletedTask;
         }
     }

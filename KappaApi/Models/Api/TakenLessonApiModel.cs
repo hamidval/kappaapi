@@ -13,12 +13,13 @@ namespace KappaApi.Models.Api
 
     public class TakenLessonModel 
     {
+        public int? Id { get; set; }
         public int StudentId { get; set; }
         public decimal Hours { get; set; }
 
-        public Subject Subject { get; set; }
+        public Subject SubjectId { get; set; }
 
-        public YearGroup YearGroup { get; set; }
+        public YearGroup YearGroupId { get; set; }
 
         public decimal GroupFee { get; set; }
 
@@ -29,6 +30,8 @@ namespace KappaApi.Models.Api
         public decimal SinglePay { get; set; }
 
         public LessonType LessonType { get; set; }
+
+        public TakenLessonPaidStatus Status { get; set; }
 
 
     }

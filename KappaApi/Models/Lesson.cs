@@ -22,6 +22,8 @@ namespace KappaApi.Models
 
         public virtual LessonPrice LessonPrice {get; set;}
 
+        public virtual LessonStatus Status { get; set; }
+
         public virtual int Day { get; set; }
 
         public static Student CreateStudent(int id, string firstName, string lastName) 
@@ -51,7 +53,7 @@ namespace KappaApi.Models
             decimal singleFee, decimal groupFee,
             decimal singlePay, decimal groupPay)
         {
-            var price = new LessonPrice(subject, yearGroup, lessonType,
+            var price = new LessonPrice(subject, yearGroup,
             singleFee, groupFee,
             singlePay, groupPay);
             

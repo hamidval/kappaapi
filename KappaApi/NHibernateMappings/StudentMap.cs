@@ -26,6 +26,10 @@ namespace KappaApi.NHibernateMappings
                 m.Column("LastName");
             });
 
+            Property(x => x.Status, m =>
+            {
+                m.Column("Status");
+            });
 
             ManyToOne(x => x.Parent, m =>
             {

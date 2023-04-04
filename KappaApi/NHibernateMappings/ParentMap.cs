@@ -35,6 +35,11 @@ namespace KappaApi.NHibernateMappings
                 m.Column("StripeCustomerId");
             });
 
+            Property(x => x.Status, m =>
+            {
+                m.Column("Status");
+            });
+
         }
 
     }

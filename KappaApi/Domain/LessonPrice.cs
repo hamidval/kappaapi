@@ -4,7 +4,7 @@ namespace KappaApi.Domain
 {
     public class LessonPrice
     {
-        public LessonPrice(Subject subject, YearGroup yearGroup, LessonType lessonType,
+        public LessonPrice(Subject subject, YearGroup yearGroup,
             decimal singleFee, decimal groupFee,
             decimal singlePay, decimal groupPay)
         {
@@ -14,6 +14,7 @@ namespace KappaApi.Domain
             GroupFee  = groupFee;  
             SinglePay = singlePay;
             GroupPay = groupPay;
+            LessonType = LessonType.Group;
     
         }
 

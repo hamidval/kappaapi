@@ -40,26 +40,26 @@ namespace KappaApi.Commands.InvoiceCommands
                         Stripe.Invoice stripeInvoice = _stripeService.CreateInvoice(takenLessonDtos, parent);
 
                         var takenLessons = _mapper.Map<List<TakenLesson>>(takenLessonDtos);
-
-
-                        foreach (var takenLesson in takenLessons)
-                        {
-                            takenLesson.StripeInvoiceId = stripeInvoice.Id;
-                        }
-
+                        
                         invoice.StripeInvoiceId = stripeInvoice.Id;
                         invoice.StripeInvoiceUrl = stripeInvoice.HostedInvoiceUrl;
                         invoice.InvoiceAmount = stripeInvoice.AmountDue;
                         invoice.ParentId = parentId;
+                        invoice.InvoiceStatus = Enums.InvoiceStatus.Draft;
+                        invoice.CreatedOn = DateTime.Now;
+                        session.Save(invoice);
+                        
+                        foreach (var takenLesson in takenLessons)
+                        {
+                            takenLesson.StripeInvoiceId = stripeInvoice.Id;
+                            takenLesson.InvoiceId = invoice.Id;
+                            takenLesson.TakenLessonPaidStatus = Enums.TakenLessonPaidStatus.Draft;
+                        }                        
 
                         foreach (var takenLesson in takenLessons)
                         {
                             session.Update(takenLesson);
-                        }
-
-                        invoice.CreatedOn = DateTime.Now;
-
-                        session.Save(invoice);
+                        }                                            
                         
                     }
                     transaction.Commit();

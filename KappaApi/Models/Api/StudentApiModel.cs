@@ -4,7 +4,8 @@
     {
         public string? FirstName { get; set; }
         public string? LastName { get; set; }
-        public IList<LessonApiModel> Lessons {get; set;}
+
+        public int ParentId { get; set; }
 
     }
 }

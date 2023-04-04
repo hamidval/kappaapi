@@ -1,5 +1,6 @@
 ﻿using AutoMapper;
 using KappaApi.Domain;
+using KappaApi.Enums;
 using KappaApi.Models;
 using KappaApi.Services.StripeService;
 using NHibernate;
@@ -37,6 +38,7 @@ namespace KappaApi.Commands.LessonCommands
                         {
                             var _student = _mapper.Map<Student>(student);
                             _student.Parent = parent;
+                            _student.Status = StudentStatus.Active;
                             
                             session.Save(_student);
                             foreach (var lesson in student.Lessons) 
@@ -44,13 +46,14 @@ namespace KappaApi.Commands.LessonCommands
                                 var newLesson = new Lesson();
 
                                 var price = new LessonPrice(lesson.Subject, lesson.YearGroup,
-                                    lesson.LessonType, lesson.SingleFee, lesson.GroupFee,
+                                    lesson.SingleFee, lesson.GroupFee,
                                     lesson.SingleFee, lesson.SinglePay);
                                 newLesson.Teacher.Id = lesson.TeacherId;
                                 newLesson.LessonPrice = price;
                                 newLesson.Student = _student;
                                 newLesson.StartDate = lesson.StartDate;
                                 newLesson.EndDate = lesson.EndDate;
+                                newLesson.Status = LessonStatus.Active;
                                 session.Save(newLesson);
                             }
                         }

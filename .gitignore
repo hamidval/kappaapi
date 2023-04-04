@@ -15,6 +15,7 @@ project.lock.json
 /kappaapi/bin
 /kappaapi/obj
 /kappaapi/properties
+/kappaapi/DBConnectionFactory.cs
 
 # User-specific files
 *.suo

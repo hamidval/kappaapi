@@ -15,7 +15,7 @@ namespace KappaApi.Models.Dtos
             YearGroup yearGroup
             ) 
         {
-            _id = id;
+            Id = id;
             Subject = subject;
             SingleFee = singleFee;
             SinglePay = singlePay;
@@ -30,9 +30,10 @@ namespace KappaApi.Models.Dtos
             TeacherId = teacherId;
             YearGroup = yearGroup;
         }
-        public int _id { get; set; }
+        public int Id { get; set; }
         public int Day { get; set; }
         public string DayText { get; set; }
+        public string SubjectText { get; set; }
         public Subject Subject { get; set; }  
         public decimal SingleFee { get; set; }
         public decimal SinglePay { get; set; }

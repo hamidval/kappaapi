@@ -18,9 +18,11 @@ namespace KappaApi.NHibernateMappings
             Property(x => x.TotalFee);
             Property(x => x.LessonDate);
             Property(x => x.TotalFee);
+            Property(x => x.InvoiceId);
             Property(x => x.StripeInvoiceId);
-
-           
+            Property(x => x.StripeRefundId);
+            Property(x => x.TakenLessonPaidStatus);
+            
 
             ManyToOne(x => x.Teacher, m =>
                 m.Column("TeacherId")

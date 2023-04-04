@@ -8,7 +8,7 @@ namespace KappaApi.NHibernateMappings
     {
         public InvoiceMap() 
         {
-            Table("dbo.Invoice");
+            Table("Invoice");
 
             Id(x => x.Id, m =>
                   m.Generator(Generators.Identity)
@@ -20,9 +20,6 @@ namespace KappaApi.NHibernateMappings
             Property(x => x.StripeInvoiceUrl);
             Property(x => x.InvoiceAmount);
             Property(x => x.ParentId);
-
-
-
 
         }
     }

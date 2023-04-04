@@ -1,13 +1,14 @@
 ﻿using KappaApi.Models;
+using KappaApi.Models.Api;
 
 namespace KappaApi.Commands.StudentCommands
 {
     public class CreateStudentCommand
     {
-        public CreateStudentCommand(Student student) 
+        public CreateStudentCommand(StudentApiModel student) 
         {
             Student = student;
         }
-        public Student Student { get; set; }
+        public StudentApiModel Student { get; set; }
     }
 }

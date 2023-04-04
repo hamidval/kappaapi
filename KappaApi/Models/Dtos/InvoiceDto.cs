@@ -4,8 +4,8 @@ namespace KappaApi.Models.Dtos
 {
     public class InvoiceDto
     {
-        public InvoiceDto(int id, InvoiceStatus status, string stripeInvoiceUrl, 
-            string parentName, decimal invoiceAmount, DateTime createdOn)
+        public InvoiceDto(int id, InvoiceStatus status, string stripeInvoiceUrl,
+            string parentName, decimal invoiceAmount, DateTime createdOn, string stripeInvoiceId)
         {
             Id = id;
             Status = status;
@@ -13,6 +13,7 @@ namespace KappaApi.Models.Dtos
             ParentName = parentName;
             InvoiceAmount = invoiceAmount;
             CreatedOn = createdOn;
+            StripeInvoiceId = stripeInvoiceId;
         }
 
         public virtual int Id { get; set; }
@@ -26,5 +27,7 @@ namespace KappaApi.Models.Dtos
         public virtual decimal InvoiceAmount { get; set; }
 
         public virtual DateTime CreatedOn { get; set; }
+
+        public virtual string StripeInvoiceId {get; set;}
     }
 }

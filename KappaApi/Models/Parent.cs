@@ -1,4 +1,5 @@
-﻿using System.ComponentModel.DataAnnotations.Schema;
+﻿using KappaApi.Enums;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace KappaApi.Models
 {
@@ -19,6 +20,7 @@ namespace KappaApi.Models
         public virtual string? FirstName { get; set; }
         public virtual string? LastName { get; set; }
         public virtual string? Email { get; set; }
+        public virtual ParentStatus Status { get; set; }
         public virtual string? StripeCustomerId { get; set; }
     }
 }

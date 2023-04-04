@@ -23,6 +23,7 @@ namespace KappaApi.Commands.TakenLessonCommands
         {
             var date = command.TakenLessonApiModel.Date;
             var teacherId = command.TakenLessonApiModel.TeacherId;
+
             List<TakenLesson> takenLessons = _mapper.Map<List<TakenLesson>>(command.TakenLessonApiModel.Lessons);
 
             foreach (var takenLesson in takenLessons) 
@@ -43,7 +44,7 @@ namespace KappaApi.Commands.TakenLessonCommands
 
             }
 
-            var oldTakenLessonModels = _takenLessonQuery.GetTakenLessons(teacherId, date);
+            var oldTakenLessonModels = _takenLessonQuery.GetTakenLessonDtos(teacherId, date);
             List<TakenLesson> oldTakenLessons = _mapper.Map<List<TakenLesson>>(oldTakenLessonModels);
 
 

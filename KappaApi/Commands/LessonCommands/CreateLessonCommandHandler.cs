@@ -1,5 +1,6 @@
 ﻿using AutoMapper;
 using KappaApi.Domain;
+using KappaApi.Enums;
 using KappaApi.Models;
 using NHibernate;
 
@@ -18,9 +19,10 @@ namespace KappaApi.Commands.LessonCommands
         {   
             var model = command.Lesson;
             var lesson = _mapper.Map<Lesson>(model);
-            var price = new LessonPrice(model.Subject, model.YearGroup, model.LessonType,
+            var price = new LessonPrice(model.Subject, model.YearGroup,
                 model.SingleFee, model.GroupFee, model.SinglePay, model.SingleFee);
             lesson.LessonPrice = price;
+            lesson.Status = LessonStatus.Archived;
             using (NHibernate.ISession session = _sessionFactory.OpenSession()) 
             {
                 using (ITransaction transaction = session.BeginTransaction()) 

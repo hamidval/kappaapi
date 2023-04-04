@@ -11,6 +11,10 @@ namespace KappaApi.Queries.Contracts
 
         public Parent? GetParentById(int id);
 
+        public Parent? GetParentByStudentId(int id);
+
         public List<ParentDto> GetAllParents();
+
+        public List<ParentDto> GetAllParentsPaginatedSerach(string? searchTerm);
     }
 }

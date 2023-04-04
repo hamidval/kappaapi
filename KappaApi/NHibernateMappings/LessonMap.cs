@@ -22,6 +22,10 @@ namespace KappaApi.NHibernateMappings
                 m.Column("Day")
             );
 
+            Property(x => x.Status, m =>
+                m.Column("Status")
+            );
+
             Property(x => x.EndDate, m =>
                 m.Column("EndDate")
             );

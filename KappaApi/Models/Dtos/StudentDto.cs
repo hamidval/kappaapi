@@ -1,18 +1,22 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿using KappaApi.Enums;
+using System.ComponentModel.DataAnnotations;
 
 namespace KappaApi.Models.Dtos
 {
     public class StudentDto
     {
-        public StudentDto(int id, string firstName, string lastName) 
+        public StudentDto(int id, string firstName, string lastName, StudentStatus status) 
         {
-            _id = id;
+            Id = id;
             FirstName = firstName;
             LastName = lastName;
+            Status = status;
         }
-        public int _id { get; set; }
+        public int Id { get; set; }
         public string FirstName { get; set; }
         public string LastName { get; set; }
+
+        public StudentStatus Status { get; set; }
 
     }
 }

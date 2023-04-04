@@ -3,6 +3,7 @@ using KappaApi.Commands.TeacherCommands;
 using KappaApi.Models;
 using KappaApi.Models.Dtos;
 using KappaApi.Queries.Contracts;
+using KappaApi.Queries.Dtos.TeacherQuery;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
@@ -23,19 +24,29 @@ namespace KappaApi.Controllers
         }
 
         [HttpPost]
-        [Route("/api/teacher")]
         public void AddTeacher(Teacher teacher) 
         {
             var command = new CreateTeacherCommand(teacher);
             _commandBus.SendAsync(command);
         }
 
-        [Authorize(Policy = "ReadMessages")]
-        [HttpGet]
-        [Route("/api/teacher")]        
-        public IList<TeacherDto> GetAllTeachers() 
+        
+        [HttpGet("/api/teachers")]        
+        public IList<TeacherDto> GetAllTeacherstan() 
         {
             return _teacherQuery.GetTeachers();
+        }
+
+        [HttpGet("all")]        
+        public IList<TeacherTakenLessonDto> GetAllTeachers()
+        {
+            return _teacherQuery.GetTeachersForTakenLessonPanel();
+        }
+
+        [HttpGet("email/{email}")]
+        public TeacherDto? GetTeacherByEmail(string email) 
+        {
+            return _teacherQuery.GetTeacherByEmail(email);
         }
 
         

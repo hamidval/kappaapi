@@ -14,8 +14,6 @@ namespace KappaApi.Models.Api
         public decimal SinglePay { get; set; }
         public decimal GroupFee { get; set; }
         public decimal GroupPay { get; set; }
-        public LessonType LessonType { get; set; }
-        public decimal PayAdjustment { get; set; }
         public DateTime StartDate { get; set; }
         public DateTime EndDate { get; set; }
 

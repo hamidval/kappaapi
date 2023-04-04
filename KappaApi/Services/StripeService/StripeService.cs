@@ -61,6 +61,28 @@ namespace KappaApi.Services.StripeService
             return response;
         }
 
+        public Refund CreateRefund(string stripeInvoiceId) 
+        {
+            var service = new InvoiceService();
+            var invoice = service.Get(stripeInvoiceId);
+            var chargeId = invoice.ChargeId;
+
+            var options = new RefundCreateOptions
+            {
+                Charge = chargeId
+            };
+            var refundService = new RefundService();
+            var refund = refundService.Create(options);
+
+            return refund;
+        }
+
+        public void SendInvoices(string id) 
+        {
+            var service = new InvoiceService();
+            service.SendInvoice(id);
+        }
+
 
     }
 }
